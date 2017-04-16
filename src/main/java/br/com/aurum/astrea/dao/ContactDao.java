@@ -22,6 +22,10 @@ public class ContactDao {
 	}
 
 	public void delete(Long contactId) {
-		// TODO: É preciso pesquisar como se usa o Objectify para deletar entidades do banco de dados.
+		ObjectifyService.ofy().delete().type(Contact.class).id(contactId).now();
+	}
+
+	public Contact get(Long contactId) {
+		return ObjectifyService.ofy().load().type(Contact.class).id(contactId).now();
 	}
 }
