@@ -1,0 +1,80 @@
+<div class="container" ng-controller="contactViewController" ng-init="init()" ng-model="contact">
+
+	<div class="app-page-header">
+		<div class="page-title">
+			<h3>Visualizar contato</h3>
+		</div>
+	</div>
+
+	<!-- Form Name -->
+	<legend></legend>
+
+	<div class="form-group">
+		<label for="firstname" class="col-sm-12 control-label" >Nome</label>
+		<div class="col-sm-12">
+			{{contact.name}}
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label for="lastname" class="col-sm-12 control-label">Nascimento</label>
+		<div class="col-sm-12">
+			{{bday(contact)}}
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label for="lastname" class="col-sm-12 control-label">CPF</label>
+		<div class="col-sm-12">
+			{{contact.cpf}}
+		</div>
+
+		<label for="lastname" class="col-sm-12 control-label">RG</label>
+		<div class="col-sm-12">
+			{{contact.rg}}
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="col-sm-12 control-label">Telefones</label>
+		<div class="col-sm-12">
+			<div ng-repeat='p in contact.phones track by $index' class="input-group repeater">
+				{{contact.phones[$index]}}
+			</div>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label for="lastname" class="col-sm-2 control-label">Email</label>
+		<div class="col-sm-12" >
+			<div ng-repeat='email in contact.emails track by $index' class="input-group repeater">
+				{{contact.emails[$index]}}
+			</div>
+		</div>
+	</div>
+
+	<legend></legend>
+
+	<div class="form-group">
+		<label class="col-sm-12 control-label" for="textarea">Endereço</label>
+		<div class="col-sm-12">
+			{{contact.address}}
+		</div>
+	</div>
+
+	<legend></legend>
+
+	<div class="form-group">
+		<label class="col-sm-12 control-label" for="textarea">Observações</label>
+		<div class="col-sm-12">
+			{{contact.observation}}
+		</div>
+	</div>
+
+	<legend></legend>
+
+	<div class="actions">
+		<a class="cancel" ng-back>Voltar</a>
+	</div>
+
+</div>
