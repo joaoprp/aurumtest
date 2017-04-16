@@ -13,7 +13,7 @@
     <div class="form-group">
       <div class="input-group">
         <div class="input-group-addon"><i class="fa fa-search"></i></div>
-        <input type="text" class="form-control" placeholder="Search" ng-model="search">
+        <input type="text" class="form-control" placeholder="Busca" ng-model="search">
       </div>
     </div>
   </form>
@@ -25,6 +25,7 @@
         <thead>
           <tr>
             <th>Nome</th>
+            <th>CPF</th>
             <th>Email</th>
             <th>Telefone</th>
             <th>Nascimento</th>
@@ -34,11 +35,13 @@
         <tbody>
 
           <tr ng-repeat="c in contacts | filter:search" ng-click="view(c)">
-            <td>{{c.name}}</td>
+            <td><a ui-sref="main.contactview({id:c.id})">{{c.name}}</a></td>
+            <td>{{c.cpf}}</td>
             <td>{{c.emails[0]}}</td>
             <td>{{c.phones[0]}}</td>
             <td>{{bday(c)}}</td>
-            <td> <i class="fa fa-trash-o icon-box" ng-click="preDelete(c)"></i> <td>    
+            <td><a ui-sref="main.addeditcontact({id:c.id})"><i class="fa fa-edit icon-box"></i></a></td>
+            <td><i class="fa fa-trash-o icon-box" ng-click="preDelete(c)"></i><td>
           </tr>
 
         </tbody>
