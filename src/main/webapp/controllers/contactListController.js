@@ -4,13 +4,18 @@ contactListController = function($scope, $http) {
 	$scope.contacts = [];
 	$scope.preDeletedContact = {};
 
+    $scope.sortType     = 'name';
+    $scope.sortReverse  = false;
+    $scope.search		= '';
+
 	$scope.init = function() {
 		$scope.listAllContacts();
 	};
 	
 	$scope.listAllContacts = function() {
-
-		// Chamar o servlet /contacts com um método 'GET' para listar os contatos do banco de dados.
+		$http.get('/contacts').then(function(data) {
+			$scope.contacts = data.data;
+		});
 	};
 
 	$scope.preDelete = function(contact) {
@@ -20,8 +25,11 @@ contactListController = function($scope, $http) {
 
 	$scope.delete = function() {
 		if($scope.preDeletedContact != null) {
+			$http.delete('/contacts?id='+$scope.preDeletedContact.id);
 
-			// Chamar o servlet /contacts com um método 'DELETE' para deletar um contato do banco de dados passando um parâmetro de identificação.
+			$scope.contacts.splice($scope.contacts.indexOf($scope.preDeletedContact),1);
+
+            $('#myModal').modal('hide');
 		}
 	};
 

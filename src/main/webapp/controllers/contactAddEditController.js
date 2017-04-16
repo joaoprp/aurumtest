@@ -1,19 +1,32 @@
 var contactAddEditController;
 
-contactAddEditController = function($scope, $http) {
+contactAddEditController = function($scope, $http, $location, $stateParams) {
 	$scope.contact = {};
 	$scope.contact.emails = [''];
 	$scope.contact.phones = [''];
 	$scope.submitted = false;
+
+    $scope.init = function() {
+    	console.log($stateParams.id);
+    	if (typeof $stateParams.id !== 'undefined' && $stateParams.id !== '')
+        	$scope.getContact();
+    };
+
+    $scope.getContact = function() {
+        $http.get('/contacts?id='+$stateParams.id).then(function(data) {
+            $scope.contact = data.data;
+        });
+    };
 	
 	$scope.save = function() {
 
 		$scope.submitted = true;
 
 		if ($scope.contact.name != null && $scope.contact.name != "") {
-
-			// Chamar o servlet /contacts com um método 'POST' para salvar um contato no banco de dados.
+			$http.post("/contacts", $scope.contact);
 		}
+
+		$location.path('/contacts');
 
 	};
 

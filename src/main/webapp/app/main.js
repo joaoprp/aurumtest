@@ -5,7 +5,8 @@ app.config([ '$urlRouterProvider', '$stateProvider',
 			
 			$stateProvider.state('main', {url:'/', templateUrl:'/view/main.html'});
 			$stateProvider.state('main.contacts', {url:'contacts', templateUrl:'/view/contacts/contacts.html'});
-			$stateProvider.state('main.addeditcontact', {url:'addeditcontact', templateUrl:'/view/contacts/contactaddedit.html'});
+			$stateProvider.state('main.contactview', {url:'contacts/:id', templateUrl:'/view/contacts/view.html'});
+			$stateProvider.state('main.addeditcontact', {url:'addeditcontact/:id', templateUrl:'/view/contacts/contactaddedit.html'});
 			
 			$urlRouterProvider.otherwise("/")
 			
