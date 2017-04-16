@@ -2,7 +2,8 @@
 
 	<div class="app-page-header">
 		<div class="page-title">
-			<h3 >Adicionar contato</h3>
+			<h3 ng-show="contact.name.length">Editar contato</h3>
+			<h3 ng-show="!contact.name.length">Adicionar contato</h3>
 		</div>
 	</div>
 
