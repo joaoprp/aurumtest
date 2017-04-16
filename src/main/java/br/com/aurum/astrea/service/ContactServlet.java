@@ -15,7 +15,7 @@ import com.google.gson.Gson;
 
 @SuppressWarnings("serial")
 public class ContactServlet extends HttpServlet {
-
+	
 	private static final ContactDao DAO = new ContactDao();
 
 	@Override
@@ -30,7 +30,7 @@ public class ContactServlet extends HttpServlet {
 		resp.setStatus(200);
 		resp.setContentType("application/json");
 	}
-
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		Gson gson = new Gson();
@@ -46,8 +46,9 @@ public class ContactServlet extends HttpServlet {
 		resp.setStatus(200);
 		resp.setContentType("application/json");
 
+		resp.getWriter().write(json);
 	}
-
+	
 	@Override
 	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		DAO.delete(Long.parseLong(req.getParameter("id")));
